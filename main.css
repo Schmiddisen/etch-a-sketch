@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .container-grid {
   display: grid;
@@ -19,11 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 60px;
-}
-
-.hovered {
-  background-color: black;
+  margin: 20px;
 }
 
 button {
@@ -51,4 +47,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.subHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }

@@ -3,12 +3,17 @@ let container = document.querySelector(".container-grid");
 let ratioP = document.querySelector("#ratio");
 
 let currentNumberOfSquares = 16;
+let color = false;
 
 function addHover() {
   const gridElements = document.querySelectorAll(".gridElement");
   gridElements.forEach((gridElement) => {
     gridElement.addEventListener("mouseenter", () => {
-      gridElement.classList.add("hovered");
+      if (color) {
+        gridElement.setAttribute("style", `background-color: ${getColorCode()}`);
+      } else {
+        gridElement.setAttribute("style", `background-color: black`);
+      }
     });
   });
 }
@@ -29,6 +34,17 @@ const resetBtn = document.querySelector(".resetBtn");
 resetBtn.addEventListener("click", () => {
   removeGrid(container);
   createGrid(currentNumberOfSquares);
+});
+
+const colorBtn = document.querySelector(".colorBtn");
+colorBtn.addEventListener("click", () => {
+  if (color) {
+    color = false;
+    colorBtn.textContent = ("Enable colors");
+  } else {
+    color = true;
+    colorBtn.textContent = ("Disable colors");
+  }
 });
 
 function createGrid(numberOfSquares) {
@@ -56,3 +72,12 @@ function setGrid(numberOfSquares) {
 }
 
 createGrid(currentNumberOfSquares);
+
+function getColorCode() {
+  var makeColorCode = "0123456789ABCDEF";
+  var code = "#";
+  for (var count = 0; count < 6; count++) {
+    code = code + makeColorCode[Math.floor(Math.random() * 16)];
+  }
+  return code;
+}
