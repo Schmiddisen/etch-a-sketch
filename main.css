@@ -1,0 +1,29 @@
+.container-grid {
+  display: grid;
+  width: 920px;
+  height: 920px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.hovered {
+  background-color: black;
+}
+
+.btn {
+  border-radius: 4px;
+  color: black;
+  background-color: aquamarine;
+  box-shadow: 5px;
+}
