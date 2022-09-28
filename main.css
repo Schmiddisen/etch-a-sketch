@@ -2,6 +2,8 @@
   display: grid;
   width: 920px;
   height: 920px;
+  border: 60px solid blanchedalmond;
+  border-radius: 15px;
 }
 
 .container {
@@ -14,16 +16,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: 60px;
 }
 
 .hovered {
   background-color: black;
 }
 
-.btn {
+button {
   border-radius: 4px;
   color: black;
   background-color: aquamarine;
   box-shadow: 5px;
+  margin: 10px;
+  height: 100px;
+  width: 250px;
+  font-size: 24px;
 }

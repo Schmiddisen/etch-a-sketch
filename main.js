@@ -1,7 +1,7 @@
 //get the grid
 let container = document.querySelector(".container-grid");
 
-createGrid(16);
+let currentNumberOfSquares = 16;
 
 function addHover() {
   const gridElements = document.querySelectorAll(".gridElement");
@@ -18,15 +18,22 @@ function removeGrid(parent) {
   }
 }
 
-const btn = document.querySelector(".btn");
-btn.addEventListener("click", () => {
+const newBtn = document.querySelector(".newBtn");
+newBtn.addEventListener("click", () => {
   removeGrid(container);
-  createGrid(prompt("How many squares should be in the new grid? (Max. 100)"));
+  createGrid(prompt("How many squares should be in the new grid?"));
+});
+
+const resetBtn = document.querySelector(".resetBtn");
+resetBtn.addEventListener("click", () => {
+  removeGrid(container);
+  createGrid(currentNumberOfSquares);
 });
 
 function createGrid(numberOfSquares) {
-  if (numberOfSquares > 100 || numberOfSquares < 1) {
-    alert("A maximum of 100 squares is allowed. ");
+  if (numberOfSquares > 256 || numberOfSquares < 1) {
+    alert("Enter a number between 1 and 256.  ");
+    createGrid(currentNumberOfSquares);
     return;
   }
   for (let i = 0; i < numberOfSquares; i++) {
@@ -34,6 +41,7 @@ function createGrid(numberOfSquares) {
     div.setAttribute("class", "gridElement");
     container.appendChild(div);
   }
+  currentNumberOfSquares = numberOfSquares;
   addHover();
   setGrid(numberOfSquares);
 }
@@ -43,3 +51,5 @@ function setGrid(numberOfSquares) {
   container.style.gridTemplateColumns = number;
   container.style.gridTemplateRows = number;
 }
+
+createGrid(currentNumberOfSquares);
