@@ -22,7 +22,7 @@ function removeGrid(parent) {
 const newBtn = document.querySelector(".newBtn");
 newBtn.addEventListener("click", () => {
   removeGrid(container);
-  createGrid(prompt("How many squares should be in the new grid?"));
+  createGrid(prompt("How many squares per side should be in the new grid?"));
 });
 
 const resetBtn = document.querySelector(".resetBtn");
@@ -32,12 +32,13 @@ resetBtn.addEventListener("click", () => {
 });
 
 function createGrid(numberOfSquares) {
-  if (numberOfSquares > 256 || numberOfSquares < 1) {
-    alert("Enter a number between 1 and 256.  ");
+  if (numberOfSquares > 100 || numberOfSquares < 1) {
+    alert("Enter a number between 1 and 100.  ");
     createGrid(currentNumberOfSquares);
     return;
   }
-  for (let i = 0; i < numberOfSquares; i++) {
+  let numberOfSquaresForLoop = numberOfSquares * numberOfSquares;
+  for (let i = 0; i < numberOfSquaresForLoop; i++) {
     let div = document.createElement("div");
     div.setAttribute("class", "gridElement");
     container.appendChild(div);
@@ -45,12 +46,11 @@ function createGrid(numberOfSquares) {
   currentNumberOfSquares = numberOfSquares;
   addHover();
   setGrid(numberOfSquares);
-  let ratio = Math.floor(Math.sqrt(numberOfSquares));
-  ratioP.textContent = `Current ratio: ${ratio}x${ratio}`;
+  ratioP.textContent = `Current ratio: ${numberOfSquares}x${numberOfSquares}`;
 }
 
 function setGrid(numberOfSquares) {
-  let number = "auto ".repeat(Math.floor(Math.sqrt(numberOfSquares, 2)));
+  let number = "auto ".repeat(numberOfSquares);
   container.style.gridTemplateColumns = number;
   container.style.gridTemplateRows = number;
 }
