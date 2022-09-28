@@ -1,5 +1,6 @@
 //get the grid
 let container = document.querySelector(".container-grid");
+let ratioP = document.querySelector("#ratio");
 
 let currentNumberOfSquares = 16;
 
@@ -44,6 +45,8 @@ function createGrid(numberOfSquares) {
   currentNumberOfSquares = numberOfSquares;
   addHover();
   setGrid(numberOfSquares);
+  let ratio = Math.floor(Math.sqrt(numberOfSquares));
+  ratioP.textContent = `Current ratio: ${ratio}x${ratio}`;
 }
 
 function setGrid(numberOfSquares) {
