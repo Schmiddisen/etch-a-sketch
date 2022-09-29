@@ -47,7 +47,7 @@ function removeGrid(parent) {
 const newBtn = document.querySelector(".newBtn");
 newBtn.addEventListener("click", () => {
   removeGrid(container);
-  createGrid(prompt("How many squares per side should be in the new grid?"));
+  createGrid(prompt("How many squares per side should be on the new canvas?"));
 });
 
 const resetBtn = document.querySelector(".resetBtn");
