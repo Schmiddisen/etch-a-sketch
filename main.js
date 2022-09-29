@@ -4,17 +4,37 @@ let ratioP = document.querySelector("#ratio");
 
 let currentNumberOfSquares = 16;
 let color = false;
+let transparency = false;
 
 function addHover() {
   const gridElements = document.querySelectorAll(".gridElement");
+  if (transparency) addTransparency();
   gridElements.forEach((gridElement) => {
     gridElement.addEventListener("mouseenter", () => {
       if (color) {
-        gridElement.setAttribute("style", `background-color: ${getColorCode()}`);
+        gridElement.style.backgroundColor = `${getColorCode()}`;
       } else {
-        gridElement.setAttribute("style", `background-color: black`);
+        gridElement.style.backgroundColor = "black";
+      }
+      if (transparency) {
+        let opacity = getComputedStyle(gridElement).getPropertyValue("opacity");
+        gridElement.style.opacity = `${parseFloat(opacity) + 0.1}`;
       }
     });
+  });
+}
+
+function addTransparency() {
+  const gridElements = document.querySelectorAll(".gridElement");
+  gridElements.forEach((gridElement) => {
+    gridElement.style.opacity = "0";
+  });
+}
+function removeTransparency() {
+  resetGrid();
+  const gridElements = document.querySelectorAll(".gridElement");
+  gridElements.forEach((gridElement) => {
+    if (!transparency) gridElement.style.opacity = "1";
   });
 }
 
@@ -32,18 +52,30 @@ newBtn.addEventListener("click", () => {
 
 const resetBtn = document.querySelector(".resetBtn");
 resetBtn.addEventListener("click", () => {
-  removeGrid(container);
-  createGrid(currentNumberOfSquares);
+  resetGrid();
 });
 
 const colorBtn = document.querySelector(".colorBtn");
 colorBtn.addEventListener("click", () => {
   if (color) {
     color = false;
-    colorBtn.textContent = ("Enable colors");
+    colorBtn.textContent = "Enable colors";
   } else {
     color = true;
-    colorBtn.textContent = ("Disable colors");
+    colorBtn.textContent = "Disable colors";
+  }
+});
+
+const transparencyBtn = document.querySelector(".transparencyBtn");
+transparencyBtn.addEventListener("click", () => {
+  if (transparency) {
+    transparency = false;
+    removeTransparency();
+    transparencyBtn.textContent = "Enable transparency";
+  } else {
+    transparency = true;
+    addTransparency();
+    transparencyBtn.textContent = "Disable transparency";
   }
 });
 
@@ -80,4 +112,9 @@ function getColorCode() {
     code = code + makeColorCode[Math.floor(Math.random() * 16)];
   }
   return code;
+}
+
+function resetGrid() {
+  removeGrid(container);
+  createGrid(currentNumberOfSquares);
 }
